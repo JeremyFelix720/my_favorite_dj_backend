@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "musics",
+  "info": {
+    "singularName": "music",
+    "pluralName": "musics",
+    "displayName": "Music",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Link": {
+      "type": "string",
+      "required": true
+    },
+    "Favorite": {
+      "type": "boolean",
+      "required": true
+    },
+    "ReleaseDate": {
+      "type": "date",
+      "required": true
+    },
+    "BackgroundColor": {
+      "type": "string",
+      "required": true
+    },
+    "singer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::singer.singer",
+      "inversedBy": "music"
+    }
+  }
+}
