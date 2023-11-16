@@ -362,84 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiMusicMusic extends Schema.CollectionType {
-  collectionName: 'musics';
-  info: {
-    singularName: 'music';
-    pluralName: 'musics';
-    displayName: 'Music';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Title: Attribute.String & Attribute.Required;
-    Link: Attribute.String & Attribute.Required;
-    Favorite: Attribute.Boolean & Attribute.Required;
-    ReleaseDate: Attribute.Date & Attribute.Required;
-    BackgroundColor: Attribute.String & Attribute.Required;
-    singer: Attribute.Relation<
-      'api::music.music',
-      'manyToOne',
-      'api::singer.singer'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::music.music',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::music.music',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiSingerSinger extends Schema.CollectionType {
-  collectionName: 'singers';
-  info: {
-    singularName: 'singer';
-    pluralName: 'singers';
-    displayName: 'Singer';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    LastName: Attribute.String & Attribute.Required;
-    FirstName: Attribute.String & Attribute.Required;
-    BirthDate: Attribute.Date & Attribute.Required;
-    music: Attribute.Relation<
-      'api::singer.singer',
-      'oneToMany',
-      'api::music.music'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::singer.singer',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::singer.singer',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -755,6 +677,84 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiMusicMusic extends Schema.CollectionType {
+  collectionName: 'musics';
+  info: {
+    singularName: 'music';
+    pluralName: 'musics';
+    displayName: 'Music';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String & Attribute.Required;
+    Link: Attribute.String & Attribute.Required;
+    Favorite: Attribute.Boolean & Attribute.Required;
+    ReleaseDate: Attribute.Date & Attribute.Required;
+    BackgroundColor: Attribute.String & Attribute.Required;
+    singer: Attribute.Relation<
+      'api::music.music',
+      'manyToOne',
+      'api::singer.singer'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::music.music',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::music.music',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSingerSinger extends Schema.CollectionType {
+  collectionName: 'singers';
+  info: {
+    singularName: 'singer';
+    pluralName: 'singers';
+    displayName: 'Singer';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    LastName: Attribute.String & Attribute.Required;
+    FirstName: Attribute.String & Attribute.Required;
+    BirthDate: Attribute.Date & Attribute.Required;
+    music: Attribute.Relation<
+      'api::singer.singer',
+      'oneToMany',
+      'api::music.music'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::singer.singer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::singer.singer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -765,14 +765,14 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::music.music': ApiMusicMusic;
-      'api::singer.singer': ApiSingerSinger;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::music.music': ApiMusicMusic;
+      'api::singer.singer': ApiSingerSinger;
     }
   }
 }
